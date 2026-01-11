@@ -1,0 +1,136 @@
+bplist00�_WebMainResource�	
+_WebResourceData_WebResourceMIMEType_WebResourceFrameName^WebResourceURL_WebResourceTextEncodingNameO;<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Arial; color: #1a1a1a; -webkit-text-stroke: #1a1a1a}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Arial; color: #1a1a1a; -webkit-text-stroke: #1a1a1a; min-height: 15.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Arial; color: #1a1a1a; -webkit-text-stroke: #1a1a1a; background-color: #ffffff}
+    span.s1 {font-kerning: none; background-color: #ffffff}
+    span.s2 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">* {</span></p>
+<p class="p1"><span class="s1">    margin: 0;</span></p>
+<p class="p1"><span class="s1">    padding: 0;</span></p>
+<p class="p1"><span class="s1">    box-sizing: border-box;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p1"><span class="s1">body {</span></p>
+<p class="p1"><span class="s1">    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;</span></p>
+<p class="p1"><span class="s1">    min-height: 100vh;</span></p>
+<p class="p1"><span class="s1">    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);</span></p>
+<p class="p1"><span class="s1">    color: white;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p1"><span class="s1">.screen {</span></p>
+<p class="p1"><span class="s1">    min-height: 100vh;</span></p>
+<p class="p1"><span class="s1">    display: flex;</span></p>
+<p class="p1"><span class="s1">    align-items: center;</span></p>
+<p class="p1"><span class="s1">    justify-content: center;</span></p>
+<p class="p1"><span class="s1">    padding: 2rem;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p1"><span class="s1">.dashboard-container {</span></p>
+<p class="p1"><span class="s1">    max-width: 75rem;</span></p>
+<p class="p1"><span class="s1">    margin: 0 auto;</span></p>
+<p class="p1"><span class="s1">    width: 100%;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p1"><span class="s1">.dashboard-header {</span></p>
+<p class="p1"><span class="s1">    display: flex;</span></p>
+<p class="p1"><span class="s1">    justify-content: space-between;</span></p>
+<p class="p1"><span class="s1">    align-items: center;</span></p>
+<p class="p1"><span class="s1">    margin-bottom: 1.5rem;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p1"><span class="s1">.clock-card {</span></p>
+<p class="p1"><span class="s1">    background: white;</span></p>
+<p class="p1"><span class="s1">    border-radius: 1rem;</span></p>
+<p class="p1"><span class="s1">    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);</span></p>
+<p class="p1"><span class="s1">    padding: 2rem;</span></p>
+<p class="p1"><span class="s1">    margin-bottom: 2rem;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p1"><span class="s1">.clock {</span></p>
+<p class="p1"><span class="s1">    text-align: center;</span></p>
+<p class="p1"><span class="s1">    font-size: 4rem;</span></p>
+<p class="p1"><span class="s1">    font-family: 'Courier New', monospace;</span></p>
+<p class="p1"><span class="s1">    font-weight: bold;</span></p>
+<p class="p1"><span class="s1">    color: #1e293b;</span></p>
+<p class="p1"><span class="s1">    letter-spacing: 0.1em;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p1"><span class="s1">.bars-container {</span></p>
+<p class="p1"><span class="s1">    display: flex;</span></p>
+<p class="p1"><span class="s1">    flex-direction: column;</span></p>
+<p class="p1"><span class="s1">    gap: 1rem;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p1"><span class="s1">.bar {</span></p>
+<p class="p1"><span class="s1">    background: #000000;</span></p>
+<p class="p1"><span class="s1">    border-radius: 0.75rem;</span></p>
+<p class="p1"><span class="s1">    padding: 1.5rem;</span></p>
+<p class="p1"><span class="s1">    display: flex;</span></p>
+<p class="p1"><span class="s1">    align-items: center;</span></p>
+<p class="p1"><span class="s1">    justify-content: space-between;</span></p>
+<p class="p1"><span class="s1">    transition: all 0.3s ease;</span></p>
+<p class="p1"><span class="s1">    border: 1px solid #334155;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p1"><span class="s1">.bar.active {</span></p>
+<p class="p1"><span class="s1">    background: #dc2626; /* Bright Red when Active */</span></p>
+<p class="p1"><span class="s1">    border-color: #ef4444;</span></p>
+<p class="p1"><span class="s1">    transform: scale(1.02);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p1"><span class="s1">.bar-left {</span></p>
+<p class="p1"><span class="s1">    display: flex;</span></p>
+<p class="p1"><span class="s1">    align-items: center;</span></p>
+<p class="p1"><span class="s1">    gap: 1rem;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p1"><span class="s1">.bar-number {</span></p>
+<p class="p1"><span class="s1">    font-size: 1.875rem;</span></p>
+<p class="p1"><span class="s1">    font-weight: bold;</span></p>
+<p class="p1"><span class="s1">    width: 3rem;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p1"><span class="s1">.bar-divider {</span></p>
+<p class="p1"><span class="s1">    height: 3rem;</span></p>
+<p class="p1"><span class="s1">    width: 1px;</span></p>
+<p class="p1"><span class="s1">    background: rgba(255, 255, 255, 0.2);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p1"><span class="s1">.bar-center {</span></p>
+<p class="p1"><span class="s1">    flex: 1;</span></p>
+<p class="p1"><span class="s1">    padding: 0 1.5rem;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p1"><span class="s1">.bar-time {</span></p>
+<p class="p1"><span class="s1">    padding: 0.5rem 1rem;</span></p>
+<p class="p1"><span class="s1">    background: rgba(255, 255, 255, 0.1);</span></p>
+<p class="p1"><span class="s1">    border-radius: 0.5rem;</span></p>
+<p class="p1"><span class="s1">    font-family: 'Courier New', monospace;</span></p>
+<p class="p1"><span class="s1">    font-size: 1.25rem;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p1"><span class="s1">.bar-status {</span></p>
+<p class="p1"><span class="s1">    font-weight: 600;</span></p>
+<p class="p1"><span class="s1">    letter-spacing: 0.05em;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p1"><span class="s1">@media (max-width: 768px) {</span></p>
+<p class="p1"><span class="s1">    .clock { font-size: 2.5rem; }</span></p>
+<p class="p1"><span class="s1">    .bar { flex-direction: column; text-align: center; }</span></p>
+<p class="p1"><span class="s1">    .bar-divider { display: none; }</span></p>
+<p class="p3"><span class="s2">}</span></p>
+</body>
+</html>
+Ytext/htmlP_file:///index.htmlUutf-8    ( : P g v �����                           �
