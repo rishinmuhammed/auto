@@ -1,88 +1,182 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2761
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 ArialMT;}
-{\colortbl;\red255\green255\blue255;\red26\green26\blue26;\red255\green255\blue255;\red16\green60\blue192;
-}
-{\*\expandedcolortbl;;\cssrgb\c13333\c13333\c13333;\cssrgb\c100000\c100000\c100000;\cssrgb\c6667\c33333\c80000;
-}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\deftab720
-\pard\pardeftab720\partightenfactor0
+/**
+ * Automated Schedule Logic
+ * 1. Fetches ./data/schedule.csv
+ * 2. Detects current day of the month
+ * 3. Highlights the 'bar' red for 1 second when the time matches exactly
+ * 4. Shows the next upcoming time for each bar
+ */
 
-\f0\fs26 \cf2 \cb3 \expnd0\expndtw0\kerning0
-const CSV_PATH = './data/schedule.csv';\cb1 \
-\cb3 let presetData = \{\};\cb1 \
-\cb3 let selectedDay = new Date().getDate(); // Automatically set to today\cb1 \
-\
-\cb3 async function init() \{\cb1 \
-\cb3 \'a0 \'a0 await loadCSVData();\cb1 \
-\cb3 \'a0 \'a0 document.getElementById('dayTitle').textContent = `Day $\{selectedDay\} Schedule`;\cb1 \
-\cb3 \'a0 \'a0 createBars();\cb1 \
-\cb3 \'a0 \'a0 setInterval(updateClock, 1000);\cb1 \
-\cb3 \}\cb1 \
-\
-\cb3 async function loadCSVData() \{\cb1 \
-\cb3 \'a0 \'a0 try \{\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 const response = await fetch(CSV_PATH);\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 const text = await response.text();\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 presetData = parseCSV(text);\cb1 \
-\cb3 \'a0 \'a0 \} catch (e) \{\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 console.error("Could not load CSV, check if file exists in /data/schedule.csv");\cb1 \
-\cb3 \'a0 \'a0 \}\cb1 \
-\cb3 \}\cb1 \
-\
-\cb3 function parseCSV(text) \{\cb1 \
-\cb3 \'a0 \'a0 const lines = text.trim().split('\\n');\cb1 \
-\cb3 \'a0 \'a0 const data = \{\};\cb1 \
-\cb3 \'a0 \'a0 for (let i = 1; i < lines.length; i++) \{\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 const [day, bar, h, m, s] = lines[i].split(',').map(item => parseInt(item.trim()));\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 if (!data[day]) data[day] = \{\};\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 const key = `bar$\{bar\}`;\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 if (!data[day][key]) data[day][key] = [];\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 data[day][key].push(\{ h, m, s \});\cb1 \
-\cb3 \'a0 \'a0 \}\cb1 \
-\cb3 \'a0 \'a0 return data;\cb1 \
-\cb3 \}\cb1 \
-\
-\cb3 function updateClock() \{\cb1 \
-\cb3 \'a0 \'a0 const now = new Date();\cb1 \
-\cb3 \'a0 \'a0 const timeString = [now.getHours(), now.getMinutes(), now.getSeconds()]\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 .map(v => String(v).padStart(2, '0')).join(':');\cb1 \
-\cb3 \'a0 \'a0 document.getElementById('clock').textContent = timeString;\cb1 \
-\cb3 \'a0 \'a0 updateBars(now);\cb1 \
-\cb3 \}\cb1 \
-\
-\cb3 function updateBars(now) \{\cb1 \
-\cb3 \'a0 \'a0 const dayData = presetData[selectedDay] || \{\};\cb1 \
-\cb3 \'a0 \'a0 for (let i = 1; i <= 6; i++) \{\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 const barDiv = document.getElementById(`bar$\{i\}`);\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 if (!barDiv) continue;\cb1 \
-\
-\cb3 \'a0 \'a0 \'a0 \'a0 const times = dayData[`bar$\{i\}`] || [];\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 const isActive = times.some(t => t.h === now.getHours() && t.m === now.getMinutes() && t.s === now.getSeconds());\cb1 \
-\
-\cb3 \'a0 \'a0 \'a0 \'a0 if (isActive) \{\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 barDiv.classList.add('active');\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 barDiv.querySelector('.bar-status').textContent = '\uc0\u9679  ACTIVE';\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 \} else \{\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 barDiv.classList.remove('active');\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 barDiv.querySelector('.bar-status').textContent = '\uc0\u9675  IDLE';\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 \}\cb1 \
-\cb3 \'a0 \'a0 \}\cb1 \
-\cb3 \}\cb1 \
-\
-\cb3 function createBars() \{\cb1 \
-\cb3 \'a0 \'a0 const container = document.getElementById('barsContainer');\cb1 \
-\cb3 \'a0 \'a0 container.innerHTML = '';\cb1 \
-\cb3 \'a0 \'a0 for (let i = 6; i >= 1; i--) \{\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 const div = document.createElement('div');\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 div.className = 'bar';\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 {\field{\*\fldinst{HYPERLINK "http://div.id/"}}{\fldrslt \cf4 \ul \ulc4 div.id}} = `bar$\{i\}`;\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 div.innerHTML = `\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 <div class="bar-left"><span class="bar-number">$\{i\}</span><div class="bar-divider"></div></div>\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 <div class="bar-center"><span class="bar-time">--:--:--</span></div>\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 <div class="bar-status">\uc0\u9675  IDLE</div>`;\cb1 \
-\cb3 \'a0 \'a0 \'a0 \'a0 container.appendChild(div);\cb1 \
-\cb3 \'a0 \'a0 \}\cb1 \
-\cb3 \}\cb1 \
-\
-\cb3 init();}
+const CSV_PATH = './data/schedule.csv';
+let presetData = {};
+let selectedDay = new Date().getDate(); // Automatically gets current day (1-31)
+
+// 1. Initialize the application
+async function init() {
+    console.log("System Initializing...");
+
+    // Automatically load the CSV file from your /data/ folder
+    await loadCSVData();
+
+    // Set the UI Title
+    const titleElement = document.getElementById('dayTitle');
+    if (titleElement) {
+        titleElement.textContent = `Day ${selectedDay} Schedule`;
+    }
+
+    // Generate the HTML for the 6 bars
+    createBars();
+
+    // Start the 1-second interval loop
+    setInterval(updateClock, 1000);
+}
+
+// 2. Fetch and Parse CSV
+async function loadCSVData() {
+    try {
+        const response = await fetch(CSV_PATH);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+        const text = await response.text();
+        presetData = parseCSV(text);
+
+        const statusElement = document.getElementById('status');
+        if (statusElement) statusElement.textContent = "Data Synced";
+        console.log("CSV Data Loaded:", presetData);
+    } catch (e) {
+        console.error("Could not load CSV:", e);
+        const statusElement = document.getElementById('status');
+        if (statusElement) statusElement.textContent = "CSV Error: Not Found";
+    }
+}
+
+function parseCSV(text) {
+    const lines = text.trim().split('\n');
+    const data = {};
+
+    // Skip header row (i=1)
+    for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+
+        const [day, bar, h, m, s] = line.split(',').map(item => parseInt(item.trim()));
+
+        if (isNaN(day)) continue;
+
+        if (!data[day]) data[day] = {};
+        const key = `bar${bar}`;
+        if (!data[day][key]) data[day][key] = [];
+
+        data[day][key].push({ h, m, s });
+    }
+    return data;
+}
+
+// 3. Logic to find the Next Scheduled Time
+function getNextTime(timesArray, now) {
+    const currentTotalSeconds = (now.getHours() * 3600) + (now.getMinutes() * 60) + now.getSeconds();
+
+    let nextTime = null;
+    let minDiff = Infinity;
+
+    for (let timeData of timesArray) {
+        const presetTotalSeconds = (timeData.h * 3600) + (timeData.m * 60) + timeData.s;
+        const diff = presetTotalSeconds - currentTotalSeconds;
+
+        // Check for the soonest time in the future
+        if (diff > 0 && diff < minDiff) {
+            minDiff = diff;
+            nextTime = timeData;
+        }
+    }
+
+    // If no more times today, loop back to the first time of the day
+    if (!nextTime && timesArray.length > 0) {
+        nextTime = timesArray[0];
+    }
+
+    return nextTime;
+}
+
+// 4. UI Rendering and Updates
+function createBars() {
+    const container = document.getElementById('barsContainer');
+    if (!container) return;
+
+    container.innerHTML = '';
+    // Create bars 6 down to 1
+    for (let i = 6; i >= 1; i--) {
+        const div = document.createElement('div');
+        div.className = 'bar';
+        div.id = `bar${i}`;
+        div.innerHTML = `
+            <div class="bar-left">
+                <span class="bar-number">${i}</span>
+                <div class="bar-divider"></div>
+            </div>
+            <div class="bar-center">
+                <span class="bar-time" id="time${i}">--:--:--</span>
+            </div>
+            <div class="bar-status" id="status${i}">○ IDLE</div>
+        `;
+        container.appendChild(div);
+    }
+}
+
+function updateClock() {
+    const now = new Date();
+
+    // Update the main digital clock
+    const timeString = [now.getHours(), now.getMinutes(), now.getSeconds()]
+        .map(v => String(v).padStart(2, '0'))
+        .join(':');
+
+    const clockElement = document.getElementById('clock');
+    if (clockElement) clockElement.textContent = timeString;
+
+    // Run the schedule check
+    updateBars(now);
+}
+
+function updateBars(now) {
+    const dayData = presetData[selectedDay] || {};
+
+    for (let i = 1; i <= 6; i++) {
+        const barDiv = document.getElementById(`bar${i}`);
+        if (!barDiv) continue;
+
+        const times = dayData[`bar${i}`] || [];
+
+        // Match current time to toggle Active state
+        const isActive = times.some(t =>
+            t.h === now.getHours() &&
+            t.m === now.getMinutes() &&
+            t.s === now.getSeconds()
+        );
+
+        const nextTime = getNextTime(times, now);
+        const timeDisplay = document.getElementById(`time${i}`);
+        const statusDisplay = document.getElementById(`status${i}`);
+
+        // Update the time shown in the bar
+        if (nextTime) {
+            const formattedTime = [nextTime.h, nextTime.m, nextTime.s]
+                .map(v => String(v).padStart(2, '0'))
+                .join(':');
+            timeDisplay.textContent = formattedTime;
+        } else {
+            timeDisplay.textContent = "No Schedule";
+        }
+
+        // Toggle visual active state
+        if (isActive) {
+            barDiv.classList.add('active');
+            statusDisplay.textContent = '● ACTIVE';
+        } else {
+            barDiv.classList.remove('active');
+            statusDisplay.textContent = '○ IDLE';
+        }
+    }
+}
+
+// Start everything
+init();
